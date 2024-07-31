@@ -2,13 +2,16 @@ import * as React from 'react'
 import { Button } from './button'
 import RiCloseCircleFill from '~icons/ri/close-circle-fill'
 import { cn } from '@/lib/utils'
+import type { Field } from '@/components/fieldInput'
 
 export interface FilePickerProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {}
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  field: Field<File | undefined>
+  setField: (field: Field<File | undefined>) => void
+}
 
 const FilePicker = React.forwardRef<HTMLInputElement, FilePickerProps>(
-  ({ className, onChange, ...props }, outerRef) => {
-    const [fileName, setFileName] = React.useState<string>('')
+  ({ className, field, setField, onChange, ...props }, outerRef) => {
     const innerRef = React.useRef<HTMLInputElement>(null)
 
     React.useImperativeHandle(outerRef, () => innerRef.current!, [])
@@ -25,24 +28,25 @@ const FilePicker = React.forwardRef<HTMLInputElement, FilePickerProps>(
           className="hidden"
           type="file"
           ref={innerRef}
-          onChange={((e) => {
-            setFileName(e.target.files?.[0]?.name ?? '')
-            if (onChange) {
-              onChange(e)
-            }
+          onChange={((event) => {
+            const value = event.target.files?.[0]
+            const result = field.schema.safeParse(value)
+
+            // setFileName(e.target.files?.[0]?.name ?? '')
+            setField({ ...field, correct: result.success, value })
           })}
           {...props}
         />
-        {fileName
+        {field.value
           ? (
               <div className="flex items-center gap-2">
-                <span className="text-base font-medium">{fileName}</span>
+                <span className="text-base font-medium">{field.value.name}</span>
                 <Button
                   size="icon"
                   variant="ghost"
                   className="hover:bg-transparent size-6 hover:text-destructive"
                   onClick={(e) => {
-                    setFileName('')
+                    setField({ ...field, correct: false, value: undefined })
                     if (innerRef?.current) {
                       innerRef.current.value = ''
                     }
