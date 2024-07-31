@@ -1,40 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { FilePicker } from './components/ui/filePicker'
+import { Input } from './components/ui/input'
+import { Slider } from './components/ui/slider'
+import { Label } from '@/components/ui/label'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <main className="grid mt-24 m-6">
+      <h2 className="text-2xl mb-6 font-medium">Personal info</h2>
+      <div className="grid gap-6">
+        <div>
+          <Label>First Name</Label>
+          <Input />
+        </div>
+        <div>
+          <Label>Last Name</Label>
+          <Input />
+        </div>
+        <div>
+          <Label>Email Address</Label>
+          <Input />
+        </div>
+        <div className="grid gap-3 pb-8">
+          <Label>Age</Label>
+          <Slider value={[8]} min={8} max={100} step={1} />
+        </div>
+        <div>
+          <Label>Photo</Label>
+          <FilePicker accept="image/*" />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    </main>
   )
 }
 

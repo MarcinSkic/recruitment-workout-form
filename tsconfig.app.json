@@ -9,15 +9,18 @@
     "useDefineForClassFields": true,
     "baseUrl": ".",
     "module": "ESNext",
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "paths": {
       "@/*": [
         "./src/*"
       ]
+
     },
     "resolveJsonModule": true,
+    "types": [
+      "unplugin-icons/types/react"
+    ],
     "allowImportingTsExtensions": true,
 
     /* Linting */
