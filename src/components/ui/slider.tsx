@@ -19,6 +19,8 @@ const Slider = React.forwardRef<
         className,
       )}
       value={value}
+      min={min}
+      max={max}
       {...props}
     >
       <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-secondary">
