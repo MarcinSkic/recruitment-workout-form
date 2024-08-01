@@ -22,7 +22,7 @@ function Calendar({
       className={cn('px-3 pt-6 pb-5 bg-popover border border-input rounded-lg', className)}
       classNames={{
 
-        months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
+        months: 'flex flex-col ',
         month: 'space-y-6',
         caption: 'flex justify-center pt-1 relative items-center',
         caption_label: 'text-base font-medium',

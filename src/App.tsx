@@ -24,7 +24,7 @@ function App() {
   }
 
   return (
-    <form className="grid my-24 m-6">
+    <form className="grid my-24 m-6 sm:justify-center sm:grid-cols-[28rem]">
       <h2 className="text-2xl mb-6 font-medium">Personal info</h2>
       <div className="grid gap-6 mb-8">
         <div>

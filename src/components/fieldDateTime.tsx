@@ -135,8 +135,8 @@ export default function FieldDateTime({ field, setField, ...props }: FieldDateTi
   }
 
   return (
-    <div className="mb-6">
-      <div className="mb-4">
+    <div className="mb-6 sm:grid sm:grid-cols-[335px_min-content] sm:gap-8">
+      <div className="mb-4 sm:flex-grow">
         <Label>Date</Label>
         <Calendar
           mode="single"
