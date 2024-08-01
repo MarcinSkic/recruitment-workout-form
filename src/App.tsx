@@ -31,8 +31,29 @@ function App() {
     setAge({ ...age, correct: age.schema.safeParse(value).success, value })
   }
 
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (!valid)
+      return
+
+    event.preventDefault()
+
+    const formData = new FormData()
+
+    formData.append('firstName', firstName.value)
+    formData.append('lastName', lastName.value)
+    formData.append('email', email.value)
+    formData.append('age', age.value.toString())
+    formData.append('photo', photo.value!)
+    formData.append('date', date.value!.toISOString())
+
+    fetch('http://letsworkout.pl/submit', {
+      method: 'POST',
+      body: formData,
+    })
+  }
+
   return (
-    <form className="grid my-24 m-6 sm:justify-center sm:grid-cols-[28rem]">
+    <form className="grid my-24 m-6 sm:justify-center sm:grid-cols-[28rem]" onSubmit={onSubmit}>
       <h2 className="text-2xl mb-6 font-medium">Personal info</h2>
       <div className="grid gap-6 mb-8">
         <div>

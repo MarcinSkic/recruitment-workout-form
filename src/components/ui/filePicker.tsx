@@ -71,6 +71,7 @@ const FilePicker = React.forwardRef<HTMLInputElement, FilePickerProps>(
                   <Button
                     size="icon"
                     variant="ghost"
+                    type="button"
                     className="hover:bg-transparent size-6 hover:text-destructive"
                     onClick={(e) => {
                       setField({ ...field, correct: false, value: undefined })
