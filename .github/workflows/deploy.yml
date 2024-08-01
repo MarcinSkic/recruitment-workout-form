@@ -30,6 +30,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Prepare pnpm set up
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.4.0
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -38,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build
-        run: npm run build
+        run: pnpm run build
         env:
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
       - name: Setup Pages
