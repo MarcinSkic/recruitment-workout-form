@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
+import { configResponsive } from 'ahooks'
 import type { Field } from './components/fieldInput'
 import FieldInput from './components/fieldInput'
 import FieldDateTime from './components/fieldDateTime'
@@ -9,6 +10,13 @@ import { Slider } from '@/components/ui/slider'
 import { Label } from '@/components/ui/label'
 
 function App() {
+  useEffect(() => {
+    configResponsive({
+      xs: 0,
+      sm: 640,
+    })
+  }, [])
+
   const [firstName, setFirstName] = useState<Field<string>>({ value: '', correct: false, schema: z.string().min(1, 'First name is required') })
   const [lastName, setLastName] = useState<Field<string>>({ value: '', correct: false, schema: z.string().min(1, 'Last name is required') })
   const [email, setEmail] = useState<Field<string>>({ value: '', correct: false, schema: z.string().min(1, 'Email is required').email('Please use correct formatting.\nExample: address@email.com') })
