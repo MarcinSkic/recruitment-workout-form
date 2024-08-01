@@ -60,7 +60,14 @@
   }
 }
 
+
+
 @layer base {
+  @font-face {
+    font-family: 'Inter';
+    src: url("./assets/Inter.ttf");
+  }
+  
   * {
     @apply border-border;
   }
